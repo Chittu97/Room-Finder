@@ -1,0 +1,149 @@
+body  {
+  margin-top: 20px;
+  background: linear-gradient(to bottom, #d7d2cc 0%, #304352  100%);
+  color: #ffffff;
+  font-family: 'poppins', sans-serif;
+  font-size: large;
+  overflow: auto;
+
+}
+.img-account-profile {
+  width: 7rem;         /* Set a fixed width */
+  height: 7rem;        /* Set a fixed height */
+  border: 2px solid white;
+  object-fit: cover;   /* Ensures the image covers the area without distorting */
+  border-radius: 50%;  /* Makes the image circular */
+  margin-right: 400px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 95pxpx;
+  right: 165px;
+  color: rgb(163, 96, 96); /* Color of the "×" */
+  background: none; /* Ensure no background is applied */
+  border: none; /* Remove any borders */
+  appearance: none; /* Override default browser styles */
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  outline: none; /* Remove any focus outline */
+}
+.close-btn:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+  color:rgb(0, 0, 0);
+}
+
+.card {
+  box-shadow: 0 0.15rem 1.75rem 0 rgb(0, 0, 0);
+}
+.logout-btn {
+  position: absolute;
+  top: 90px; /* Adjust the vertical position as needed */
+  right:  205px; /* Pushes the button to the right corner */
+  color: #913d3d;
+  padding: -2px 8px; /* Adjust padding for better spacing */
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  background-color: #e90f0f02; /* Optional: add a background color */
+}
+
+.logout-btn:hover {
+  color:rgb(0, 0, 0);
+  text-decoration: underline;
+}
+
+.card .card-header {
+  font-weight: 5;
+  width:12%;
+  justify-content: center;
+}
+
+.card-header:first-child {
+  border-radius: 0.35rem 0.35rem 0 0;
+}
+
+.card-header {
+  padding: 1rem 1.35rem;
+  margin-bottom: 0;
+  background-color: rgb(21, 28, 37);
+  border-bottom: 1px solid rgb(21, 18, 36);
+}
+
+.form-control {
+  display: block;
+  width: 70%;
+  padding: 0.875rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #000000;
+  background-color: rgb(255, 255, 255);
+  background-clip: padding-box;
+  border: 1px solid #000000;
+  appearance: none;
+  border-radius: 0.35rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #f20000;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.986);
+}
+
+.btn-primary {
+  background-color: #f27500;
+  border-color: #f28100;
+  color: #fff;
+  margin-right: 400px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.35rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #eb6010;
+  border-color: #ffffff;
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+.text-muted {
+  color: #2805aa !important;
+  margin-right: 400px;
+  
+}
+
+
+.small.mb-1 {
+  color: #000000;
+  font-size: 15px;
+  font-family:'poppins';
+  font-weight: 30px;
+  margin-left: 20px;
+}
+.small.mb-1:hover {
+  transform: scale(1.1); /* Zoom effect on hover */
+  color:#000000
+
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.container-xl {
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 60px;
+}

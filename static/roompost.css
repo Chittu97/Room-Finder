@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:wght@360;400;600');
+
+:root {
+    --main-color: #6824d4;
+    --secondary-color: #a29bfe;
+    --lighter-color: #e8e8e7;
+    --light-color: #beb8ce;
+    --dark-color: #525050;
+    --font-smaller: 14px;
+    --font-bigger: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.8;
+    color:black;
+    background: var(--dark-color);
+}
+
+a {
+    text-decoration: none;
+    color:rgb(53, 53, 66);
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1.25;
+    margin: 0 0 0.5em;
+    color: #6824d4;
+    border-bottom: 2px solid #5f3506;
+}
+
+.close-btn {
+    display: flex;
+    position: absolute; /* Change to absolute for correct positioning */
+    top: 5px; /* Distance from the top of the container */
+    right: -710px; /* Distance from the right of the container */
+    font-size: 25px;
+    cursor: pointer;
+    color: #000000;
+    border: none;
+    background-color: rgba(255, 0, 0, 0);
+    z-index: 1000;
+}
+
+.close-btn:hover {
+    color: rgb(0, 0, 0); /* Change color on hover */
+    transform: scale(1.1);
+}
+.logout-btn {
+    position: absolute;
+    top: 2px; /* Adjust the vertical position as needed */
+    right:  -670px; /* Pushes the button to the right corner */
+    color: #413535ee;
+    padding: -2px 8px; /* Adjust padding for better spacing */
+    border:2px solid rgb(48, 43, 43);
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    background-color: #ffffff; /* Optional: add a background color */
+  }
+
+  .logout-btn:hover{
+    background-color: #e2dada;
+  }
+
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5em;
+    border: 8px solid var(--lighter-color);
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #d2ffff  0%, #0694c6 100%);
+}
+
+.form-box .progress {
+    position: relative;
+    padding: 1em;
+}
+    
+    .logo {
+        font-size: 2.0em;
+        font-weight: 800;
+        color: var(--dark-color);
+        padding: 40px 48px;
+        text-align: center;
+        /* border-bottom: 3px solid #ff5501; */
+    }
+
+    .logo span {
+        color:#f07605;
+        
+    }
+
+    .roompost .logo h4 {
+        font-size: 0.75em;
+        color:#022a31;
+    }
+
+    .progress ul.progress-steps {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top:-50px;
+        margin-bottom: 0.1em;    }
+
+    .progress ul.progress-steps li {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        margin: 2em;
+        margin-bottom: 0.4em;
+    }
+
+   /* Common styling for step numbers */
+.progress ul.progress-steps li > span {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-smaller);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+    border-radius: 50%;
+    background-color: var(--lighter-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Active step number styling */
+.progress ul.progress-steps li.active > span {
+    color: rgb(0, 0, 0);
+    background-color: rgb(145, 84, 224); /* Active step color */
+    border: 2px solid rgb(255, 255, 255)
+}
+
+/* Completed step number styling */
+.progress ul.progress-steps li.completed > span {
+    background-color: var(--secondary-color);
+    color: rgb(0, 0, 0);
+}
+
+/* Default step number styling for inactive steps */
+.progress ul.progress-steps li:not(.active):not(.completed) > span {
+    background-color: var(--lighter-color);
+    color: rgb(138, 135, 135)
+}
+
+
+    .progress ul li p {
+        position: absolute;
+        top: -5em;
+        font-size: 20px;
+    }
+
+.form-box form {
+    width: 100%;
+    
+    padding: 3em 1em;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 30px 30px 15px 15px;
+}
+
+form > div {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+form > div p {
+    color:#f50707;
+    margin-bottom: 2em;
+}
+
+form > div:not(.btn-group) {
+    display: block; /* Sab sections ko visible karne ke liye */
+}
+
+form > div.active {
+    display: block;
+}
+
+form label {
+    font-size: 18px; /* Label ka font size */
+    font-weight: 600; /* Bold text */
+    color: black; /* Label ka text color */
+    margin-bottom: 0.1em; /* Label ke niche gap */
+    display: block; /* Label ko block element banata hai */
+}
+
+form :where(input, select) {
+    height: 40px;
+    padding: 0 1em; /* Horizontal padding thoda kam rakha */
+    border-radius: 7px;
+    outline-color: rgb(61, 56, 56);
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255); /* Background color */
+    color: black; /* Input text color */
+    width: 100%; /* Full width input field */
+    margin-bottom: 1.0em; /* Input ke niche gap */
+}
+
+
+.form-box form {
+    width: 100%;
+    padding: 2em 1em; /* Padding ko adjust kiya */
+    background-color: rgba(255, 255, 255, 0); /* Form ka background semi-transparent white */
+    border-radius: 10px; /* Border-radius ko thoda smooth banaya */
+    color: black;
+}
+
+form input[type="checkbox"] {
+    width: 20px; /* Checkbox ki width set karein */
+    height: 20px; /* Checkbox ki height set karein */
+    transform: scale(0.8); /* Checkbox ko scale down karein */
+    margin-right: 0.5em; /* Checkbox aur label ke beech gap */
+    cursor: pointer; /* Pointer cursor for better UX */
+}
+
+.form-box {
+    margin: 2em auto; /* Center alignment */
+    padding: 2em;
+    background: linear-gradient(to bottom, #d2ffff  0%, #0694c6 100%);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for better UI */
+}
+
+::placeholder {
+    color: #3b3333; /* Placeholder ka color slightly grey */
+}
+
+.btn-group [class*="btn-"] {
+    background-color: var(--main-color);
+    color: rgb(226, 17, 17);
+    padding: 1em 2.5em;
+    border: 2px solid rgb(32, 3, 3);
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.btn-group [class*="btn-"]:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    color: rgb(5, 3, 3);
+}
+
+
+
+
+
+form > div.active {
+    display: block;
+}
+
+.form-two, .form-three, .form-four, .form-five, .form-six {
+    display: none;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.btn-group [class*="btn-"] {
+    background-color: rgb(224, 18, 18);
+    color: white;
+    padding: 1em 2.5em;
+    border: 4px solid white;
+    border-radius: 30px;
+    cursor: pointer;
+    -webkit-transition: background-color .3s, border-color .3s ease-out;
+    transition: background-color .3s, border-color .3s ease-out;
+}
+
+.btn-group [class*="btn-"]:disabled {
+    background-color: var(--light-color);
+    border-color: var(--lighter-color);
+    cursor: text;
+}
+
+.btn-group [class*="btn-"]:hover:not(:disabled) {
+    background-color: rgb(92, 78, 78);
+    border-color: var(--light-color);
+}
+
+.btn-group .btn-submit,
+.form-six.active ~ .btn-group .btn-next {
+    display: none;
+}
+
+.form-six.active ~ .btn-group .btn-submit {
+    display: block;
+}
+
+.form-six.active ~ .btn-group {
+    justify-content: space-between;
+}
+
+::placeholder {
+    color: var(--light-color);
+}
+
+@media screen and (min-width: 768px) {
+    .form-box {
+        flex-direction: row;
+    }
+
+    .form-box .progress {
+        flex: 1 0 35%;
+        min-width: 300px;
+        padding: 3em;
+    }
+
+    .logo {
+        margin: -48px -48px 48px;
+    }
+
+    .progress ul.progress-steps {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .progress ul.progress-steps li:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: 30px;
+        width: 2px;
+        height: 65px;
+        background-color: var(--lighter-color);
+    }
+
+    .form-box form {
+        padding: 3em;
+        border-radius: 0 15px 15px 0;
+    }
+
+    .progress ul li p {
+        position: relative;
+        top: auto;
+        font-size: inherit;
+    }
+
+    .progress ul.progress-steps li p span {
+        display: block;
+    }
+    .mandatory {
+        color: red;
+      }
+}

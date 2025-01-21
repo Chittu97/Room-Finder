@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Form Confirmation</title>
+    <link rel="stylesheet" href="/static/confirmation_page.css">
+    <style>
+        .flash-message {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    z-index: 9999;
+    width: 300px;
+}
+
+.flash-message {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flash-message.success {
+    background-color: #28a745; /* Green */
+}
+
+.flash-message.error {
+    background-color: #dc3545; /* Red */
+}
+
+.flash-message.info {
+    background-color: #17a2b8; /* Blue */
+}
+
+.flash-message.warning {
+    border: 2px solid rgb(255, 255, 255);
+    background-color: #ff0202; /* Yellow */
+}
+
+.flash-message p {
+    margin: 0;
+    font-weight: bold;
+}
+
+
+
+    </style>
+</head>
+<body class="con">
+    
+    <div class="container">
+        <h2>Room Details Confirmation</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div id="flash-container">
+        {% for category, message in messages %}
+          <div class="flash-message {{ category }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+   {% endwith %}
+
+        <!-- Basic Room Information Section -->
+        <div class="confirmation-section">
+            <h3>Basic Room Information</h3>
+            <p><strong>Room Name:</strong> {{ data.get('room_name', 'Not Provided') }}</p>
+            <p><strong>Room Type:</strong> {{ data.get('room_type', 'Not Provided') }}</p>
+            <p><strong>Gender Preference:</strong> {{ data.get('gender_preference', 'Not Provided') }}</p>
+           
+            <p><strong>Room Images:</strong> 
+                {% if session.get('room_images') %}
+                {% for image in images %}
+                <img src="{{ image }}" alt="Uploaded Image" style="width: 100px; height: 100px;">
+            {% endfor %}
+                {% else %}
+                    No Image Provided
+                {% endif %}
+            </p>
+            
+            
+            <p><strong>Posting Date:</strong> {{ data.get('roompost_date', 'Not Provided') }}</p>
+        </div>
+        
+        <!-- Location Details Section -->
+        <div class="confirmation-section">
+            <h3>Location Details</h3>
+            <p><strong>City:</strong> {{ data.get('city', 'Not Provided') }}</p>
+            <p><strong>Zip Code:</strong> {{ data.get('pin_code', 'Not Provided') }}</p>
+            <p><strong>Locality:</strong> {{ data.get('locality', 'Not Provided') }}</p>
+            <p><strong>Landmark:</strong> {{ data.get('landmark', 'Not Provided') }}</p>
+            <p><strong>Complete Address:</strong> {{ data.get('address', 'Not Provided') }}</p>
+            
+        </div>
+        
+        <!-- Pricing Information Section -->
+        
+        
+        <!-- Contact Information Section -->
+        <div class="confirmation-section">
+            <h3>Contact Information</h3>
+            <p><strong>Full Name:</strong> {{ data.get('full_name', 'Not Provided') }}</p>
+            <p><strong>Owners Name:</strong> {{ data.get('owners_name', 'Not Provided') }}</p>
+            <p><strong>Owner's Phone Number:</strong> {{ data.get('owners_phone', 'Not Provided') }}</p>
+            <p><strong>Alternate Phone Number:</strong>:</strong> {{ data.get('alternate_phone', 'Not Provided') }}</p>
+           
+        </div>
+        
+       
+        
+
+    </div>
+    <form id="confirmationForm" method="POST" action="/submit_form2">
+        <!-- Your form fields go here -->
+    
+        <div class="buttons">
+            <!-- Edit Button -->
+            <button class="edit" type="button" onclick="window.location.href='/in_form3'">Edit</button>
+    
+            <!-- Submit Button -->
+            <button class="submit" type="button" onclick="showConfirmationPopup()">Submit</button>
+        </div>
+    
+        <!-- Confirmation Popup -->
+        <div id="confirmation-popup" class="popup" style="display: none;">
+            <div class="popup-content">
+                <h4>Are you sure you want to submit the form?</h4>
+                <!-- No Button -->
+                <button class="pop" type="button" onclick="closePopup()">No</button>
+                <!-- Yes Button -->
+                <button class="pop" type="button" onclick="submitForm()">Yes</button>
+            </div>
+        </div>
+    </form>
+    
+    <script>
+        // Function to show the confirmation popup
+        function showConfirmationPopup() {
+            const popup = document.getElementById('confirmation-popup');
+            popup.style.display = 'block'; // Show the popup
+        }
+    
+        // Function to close the popup when "No" is clicked
+        function closePopup() {
+            const popup = document.getElementById('confirmation-popup');
+            popup.style.display = 'none'; // Hide the popup
+        }
+    
+        // Function to handle form submission when "Yes" is clicked
+        function submitForm() {
+            document.getElementById('confirmationForm').submit(); // Submit the form programmatically
+        }
+
+    
+    </script>
+        {% include 'footer.html' %}
+
+</body>
+</html>

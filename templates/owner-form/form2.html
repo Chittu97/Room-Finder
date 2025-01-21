@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/roompost.css">
+</head>
+
+<body class="roompost">
+    <div id="page" class="site">
+        <div class="container">
+            <div class="form-box">
+                <div class="progress">
+                    <button class="close-btn" onclick="goHome()"><i class="fa fa-times"></i></button>
+                    <a href="{{ url_for('roompost') }}" class="logout-btn">Dashboard</a>
+                    <div class="logo">
+                        <a href="/"><span>Room</span>Finder</a>
+                        <h4>For Room Owner</h4>
+                    </div>
+                    <ul class="progress-steps">
+                        <li class="step">
+                            <span>1</span>
+                            <h4>Basic Room Information</h4>
+                        </li>
+                        <li class="step active">
+                            <span>2</span>
+                            <h4>Location Details</h4>
+                        </li>
+                        <li class="step">
+                            <span>3</span>
+                            <h4>Pricing Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>4</span>
+                            <h4>Room Features and Amenities</h4>
+                        </li>
+                        <li class="step">
+                            <span>5</span>
+                            <h4>Contact Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>6</span>
+                            <h4>Additional Information</h4>
+                        </li>
+                    </ul>
+                </div>
+                <form method="POST" action="{{ url_for('form2') }}">
+                    <!-- Location Details Section -->
+                    <div class="form-two form-step">
+                        <div class="bg-svg"></div>
+                        <h2>Location Details</h2>
+                        
+                        <div>
+                            <label for="city">City:<span class="mandatory">*</span></label>
+                            <input type="text" id="city" name="city" placeholder="Enter city name" 
+                                value="{{ data.get('city', '') }}" required>
+                        </div>
+                        <div>
+                            <label for="pin-code">PIN/ZIP Code:<span class="mandatory">*</span></label>
+                            <input type="text" id="pin-code" name="pin_code" placeholder="Enter PIN/ZIP code"
+                                value="{{ data.get('pin_code', '') }}" required>
+                        </div>
+                        <div>
+                            <label for="locality">Locality:<span class="mandatory">*</span></label>
+                            <input type="text" id="locality" name="locality" placeholder="Enter locality/colony name"
+                                value="{{ data.get('locality', '') }}" required>
+                        </div>
+                        <div>
+                            <label for="landmark">Landmark:<span class="mandatory">*</span></label>
+                            <input type="text" id="landmark" name="landmark" placeholder="Enter a nearby landmark"
+                                value="{{ data.get('landmark', '') }}" required>
+                        </div>
+                        <div>
+                            <label for="address">Complete Address:</label>
+                            <textarea id="address" name="address" rows="3" placeholder="Enter full address"
+                                required>{{ data.get('address', '') }}</textarea>
+                        </div>
+                        <div>
+                            <label>Nearby Facilities:<span class="mandatory">*</span></label>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="nearby_facilities" value="college"
+                                    {% if 'college' in data.get('nearby_facilities', []) %} checked {% endif %}> College</label>
+                                <label><input type="checkbox" name="nearby_facilities" value="bus-stop"
+                                    {% if 'bus-stop' in data.get('nearby_facilities', []) %} checked {% endif %}> Bus Stop</label>
+                                <label><input type="checkbox" name="nearby_facilities" value="school"
+                                    {% if 'school' in data.get('nearby_facilities', []) %} checked {% endif %}> School</label>
+                                <label><input type="checkbox" name="nearby_facilities" value="hospital"
+                                    {% if 'hospital' in data.get('nearby_facilities', []) %} checked {% endif %}> Hospital</label>
+                                <label><input type="checkbox" name="nearby_facilities" value="mall"
+                                    {% if 'mall' in data.get('nearby_facilities', []) %} checked {% endif %}> Mall</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Navigation Buttons -->
+                    <div class="btn-group">
+                        <button type="button" onclick="window.location.href='/form1'" name="prev" class="btn-prev">Back</button>
+                        <button type="submit" name="next" class="btn-next">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript function to redirect to home page
+        function goHome() {
+            window.location.href = "/home";
+        }
+
+        // JavaScript function to go back to the previous form
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+        {% include 'footer.html' %}
+
+</body>
+
+</html>

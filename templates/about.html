@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Room Finder</title>
+    <link rel="stylesheet" href="about.css">
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.header {
+    background-color: #022a31;
+    color: #fff;
+    text-align: center;
+    margin-top: 73px;
+    padding: 2em 1em;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.header p {
+    font-size: 1.2em;
+    margin-top: 0.5em;
+}
+
+.about-section {
+    padding: 2em 1em;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-section .content,
+.about-section .dynamic-content,
+.about-section .features,
+.about-section .testimonials {
+    margin-bottom: 2em;
+}
+
+.about-section h2 {
+    color: #333;
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+}
+
+.about-section ul {
+    list-style: disc inside;
+    padding-left: 0;
+}
+
+.about-section ul li {
+    margin: 0.5em 0;
+}
+
+.about-section p {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9em;
+}
+.footer .developer-link {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+.footer .developer-link:hover {
+    text-decoration: underline;
+}
+
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .about-section {
+                padding: 1.5em 1em;
+            }
+
+            .about-section h2 {
+                font-size: 1.5em;
+            }
+
+            .about-section p {
+                font-size: 0.9em;
+            }
+
+            .about-section ul li {
+                font-size: 0.9em;
+            }
+
+            .footer {
+                font-size: 0.8em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1.5em 0.5em;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header p {
+                font-size: 0.9em;
+            }
+
+            .about-section {
+                padding: 1em 0.5em;
+                box-shadow: none;
+            }
+
+            .about-section h2 {
+                font-size: 1.3em;
+            }
+
+            .about-section p,
+            .about-section ul li {
+                font-size: 0.8em;
+            }
+
+            .footer {
+                font-size: 0.7em;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <header class="header">
+        <h1>About Room Finder</h1>
+        <p>Your ultimate solution for finding rooms, roommates, and affordable accommodations!</p>
+    </header>
+    <section class="about-section">
+        <div class="content">
+            <h2>Our Mission</h2>
+            <p>At Room Finder, our mission is to simplify the process of finding the perfect room or roommate. We connect seekers with the best options available, ensuring convenience and affordability.</p>
+        </div>
+        <div class="dynamic-content">
+            <h2>Our Impact</h2>
+            <ul>
+                <li><strong>Total Rooms Listed:</strong> <span id="rooms-count">Loading...</span></li>
+                <li><strong>Happy Users:</strong> <span id="users-count">Loading...</span></li>
+                <li><strong>Partnerships:</strong> <span id="partners-count">Loading...</span></li>
+            </ul>
+        </div>
+        <div class="features">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Search for rooms by location</li>
+                <li>Post available rooms for rent</li>
+                <li>Find roommates to share rent</li>
+                <li>Real-time availability updates</li>
+            </ul>
+        </div>
+        <div class="testimonials">
+            <h2>What Our Users Say</h2>
+            <p>"Room Finder made my search for a perfect apartment so easy. Highly recommend it!"</p>
+            <p>"The room-sharing feature is a lifesaver for students like me."</p>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>© 2025 Room Finder. All rights reserved.</p>
+        <p>Developed by <a href="https://www.linkedin.com/in/chitranjan-patel-70546027b/" class="developer-link" target="_blank">Chitranjan</a></p>
+    </footer>
+    
+
+    <script>
+        // Dynamic data simulation
+        document.getElementById("rooms-count").textContent = "1,200+";
+        document.getElementById("users-count").textContent = "5,000+";
+        document.getElementById("partners-count").textContent = "300+";
+    </script>
+</body>
+</html>

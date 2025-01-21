@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/roompost.css">
+</head>
+
+<body class="roompost">
+    <div id="page" class="site">
+        <div class="container">
+            <div class="form-box">
+                <div class="progress">
+                    <button class="close-btn" onclick="goHome()"><i class="fa fa-times"></i></button>
+                    <a href="{{ url_for('roompost') }}" class="logout-btn">Dashboard</a>
+                    <div class="logo">
+                        <a href="/"><span>Room</span>Finder</a>
+                        <h4>For Room Owner</h4>
+                    </div>
+                    <ul class="progress-steps">
+                        <li class="step">
+                            <span>1</span>
+                            <h4>Basic Room Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>2</span>
+                            <h4>Location Details</h4>
+                        </li>
+                        <li class="step">
+                            <span>3</span>
+                            <h4>Pricing Information</h4>
+                        </li>
+                        <li class="step active">
+                            <span>4</span>
+                            <h4>Room Features and Amenities</h4>
+                        </li>
+                        <li class="step">
+                            <span>5</span>
+                            <h4>Contact Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>6</span>
+                            <h4>Additional Information</h4>
+                        </li>
+                    </ul>
+                </div>
+                <form method="POST" action="{{ url_for('form4') }}">
+                    <!-- Room Features and Amenities Section -->
+                    <div class="form-four form-step">
+                        <div class="bg-svg"></div>
+                        <h2>Room Features and Amenities</h2>
+
+                        <div>
+                            <label for="furnishing">Room Furnishing:<span class="mandatory">*</span></label>
+                            <select id="furnishing" name="furnishing">
+                                <option value="fully-furnished" {% if data.get('furnishing') == 'fully-furnished' %}selected{% endif %}>Fully Furnished</option>
+                                <option value="semi-furnished" {% if data.get('furnishing') == 'semi-furnished' %}selected{% endif %}>Semi-Furnished</option>
+                                <option value="unfurnished" {% if data.get('furnishing') == 'unfurnished' %}selected{% endif %}>Unfurnished</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="bed">Bed Availability:<span class="mandatory">*</span></label>
+                            <select id="bed" name="bed">
+                                <option value="single-bed" {% if data.get('bed') == 'single-bed' %}selected{% endif %}>Single Bed</option>
+                                <option value="double-bed" {% if data.get('bed') == 'double-bed' %}selected{% endif %}>Double Bed</option>
+                                <option value="bunk-bed" {% if data.get('bed') == 'bunk-bed' %}selected{% endif %}>Bunk Bed</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="bathroom">Bathroom Type:<span class="mandatory">*</span></label>
+                            <select id="bathroom" name="bathroom">
+                                <option value="attached" {% if data.get('bathroom') == 'attached' %}selected{% endif %}>Attached Bathroom</option>
+                                <option value="shared" {% if data.get('bathroom') == 'shared' %}selected{% endif %}>Shared Bathroom</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="kitchen">Kitchen Facility:<span class="mandatory">*</span></label>
+                            <select id="kitchen" name="kitchen">
+                                <option value="private-kitchen" {% if data.get('kitchen') == 'private-kitchen' %}selected{% endif %}>Private Kitchen</option>
+                                <option value="shared-kitchen" {% if data.get('kitchen') == 'shared-kitchen' %}selected{% endif %}>Shared Kitchen</option>
+                                <option value="no-kitchen" {% if data.get('kitchen') == 'no-kitchen' %}selected{% endif %}>No Kitchen</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="ac">Air Conditioning (AC):<span class="mandatory">*</span></label>
+                            <select id="ac" name="ac">
+                                <option value="yes" {% if data.get('ac') == 'yes' %}selected{% endif %}>Yes</option>
+                                <option value="no" {% if data.get('ac') == 'no' %}selected{% endif %}>No</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="parking">Parking Facility:<span class="mandatory">*</span></label>
+                            <select id="parking" name="parking">
+                                <option value="two-wheeler" {% if data.get('parking') == 'two-wheeler' %}selected{% endif %}>Two-Wheeler</option>
+                                <option value="four-wheeler" {% if data.get('parking') == 'four-wheeler' %}selected{% endif %}>Four-Wheeler</option>
+                                <option value="none" {% if data.get('parking') == 'none' %}selected{% endif %}>No Parking</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label>Common Facilities:</label>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="common-facilities" value="gym" {% if 'gym' in data.get('common-facilities', []) %}checked{% endif %}> Gym</label>
+                                <label><input type="checkbox" name="common-facilities" value="swimming-pool" {% if 'swimming-pool' in data.get('common-facilities', []) %}checked{% endif %}> Swimming Pool</label>
+                                <label><input type="checkbox" name="common-facilities" value="security" {% if 'security' in data.get('common-facilities', []) %}checked{% endif %}> Security</label>
+                                <label><input type="checkbox" name="common-facilities" value="lift" {% if 'lift' in data.get('common-facilities', []) %}checked{% endif %}> Lift</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="btn-group">
+                        <button type="button" onclick="window.location.href='/form3'" name="prev" class="btn-prev">Back</button>
+                        <button type="submit" name="next" class="btn-next">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to redirect to home page
+        function goHome() {
+            window.location.href = "/home";
+        }
+        // JavaScript function to go back to the previous form
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+        {% include 'footer.html' %}
+
+</body>
+
+</html>

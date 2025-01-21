@@ -1,0 +1,112 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.con .container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #022a31;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.con h2 {
+    text-align: center;
+    color: #ffffff;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.con strong {
+    color: #302323;
+}
+
+/* Confirmation Section */
+.con .confirmation-section {
+    background-color:lightcyan;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.con img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Buttons */
+.con .buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Styling for the Edit Button */
+button.edit {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    background-color: #1807b1; /* Purple Blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Hover Effect for All Buttons */
+.buttons button.edit:hover {
+    background-color: #0f0281; /* Green */
+}
+button.submit {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    background-color: #e02007; /* Purple Blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.pop {
+    cursor: pointer;
+}
+/* Hover Effect for All Buttons */
+.buttons button.submit:hover {
+    background-color: #b81b06; /* Green */
+}
+
+.con #confirmation-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.con .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 300px;
+}
+
+.con .popup-content button {
+    width: 100px;
+    margin: 10px;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter OTP</title>
+    <link rel="stylesheet" href="/static/password_reset/forgot.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Check your Email</h2>
+        <p>We have sent an OTP to <strong id="contact-detail">email@example.com</strong></p>
+
+        <form id="otp-form" action="/verify-otp" method="POST">
+            <input type="text" name="otp" placeholder="Enter OTP" maxlength="6" required>
+            <button type="submit">Verify email</button>
+        </form>
+
+
+        <h2>Check your phone</h2>
+        <p>We have sent an OTP to <strong id="contact-detail">1234567890</strong></p>
+
+        <form id="otp-form" action="/verify-otp" method="POST">
+            <input type="text" name="otp" placeholder="Enter OTP" maxlength="6" required>
+            <button type="submit">Verify phone number</button>
+        </form>
+
+        <p>Didn't receive OTP? <a href="#">Resend OTP</a></p>
+        <a href="/forgot-password">Back to Forgot Password</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <title>Room Details</title>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #446874;
+    color: #333;
+    padding-top: 53px; /* Navbar height */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 25px auto; /* Adds spacing below the navbar */
+    background: #fce4e4;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    
+}
+
+.room-images {
+    display: flex;
+    
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+
+.room-images img {
+    height: 300px; /* Set fixed height */
+    width: 100%; /* Maintain aspect ratio */
+    max-width: 100%;
+    border-bottom: 2px solid #f0f0f0;
+    object-fit: cover; /* Fit image properly */
+}
+
+.details {
+    padding: 20px;
+}
+
+.room-title {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.location {
+    color: #252525;
+    margin-bottom: 10px;
+}
+.contact {
+    color: #f01515;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 20px;
+    text-transform: capitalize;
+    color:#022a31;
+    margin-bottom: 10px;
+}
+
+.amenities {
+    margin-bottom: 20px;
+}
+
+.amenities h3 {
+    color:#ffffff;
+    font-weight: 5;
+    text-align: center;
+  width:12%;
+  justify-content: center;
+    padding: 0;
+  margin-bottom: 0;
+  border-radius: 0.35rem 0.35rem 0 0;
+
+  background-color: rgb(194, 194, 24);
+}
+
+.amenities ul {
+    list-style: none;
+    padding: 0;
+}
+
+.amenities ul li {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.amenities ul li::before {
+    content: "✔";
+    color: #27ae60;
+    margin-right: 10px;
+}
+
+.actions {
+    text-align: center;
+}
+    h5 {
+        font-size: 20px;
+        color:#022a31;
+    text-align: center;
+    border: 2px solid rgb(255, 255, 255) ;
+    font-family: poppins;
+    padding:7px;
+    background-color: antiquewhite;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.733);
+
+}
+    h5:hover {
+        transform: scale(1.1); /* Zoom effect on hover */
+        border: none;        
+        background: none;
+        box-shadow: none;
+    }
+.actions button {
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.actions button:hover {
+    background-color: #219150;
+}
+h6 {
+    margin-left: 30px;
+    font-size: 15px;
+}
+
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% if table == 'rooms' %}
+    <div class="container">
+        <h5> ROOM DETAILS </h5>
+        <!-- Room Images -->
+        <div class="room-images">
+            <img src="/static/images/rooms/frames-for-your-heart-FqqiAvJejto-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/jessica-lewis-thepaintedsquare-gCWabF9Z9pI-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/becca-tapert-sY5RjMB1KkE-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/simon-berger-HSy0QXIRafg-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/gina-lin-m27OTMegUyA-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/premium_photo-1661901403017-33d1c0252ac9.avif" alt="Room Image 1">
+            
+        </div>
+        <h6>{{time_since_posted}}</h6>
+
+        <!-- Room Details -->
+        <div class="details">
+            <h1 class="room-title" style="text-transform: uppercase;">{{ room[1] }}</h1>
+            <p class="price">for : {{room[3]}}</p>
+            <p class="price">{{room[32]}}</p>
+            <p class="location">Located in: {{room[13]}}</p>
+            <p class="location">City: {{room[9]}}</p>
+            <p class="contact">{{room[26]}}</p>
+            <p class="contact">{{room[27]}}</p>
+            
+
+            <div class="amenities">
+                <h3>Basic Info:</h3>
+                <ul>
+                    <li>{{room[2]}}</li>
+                    <li>{{room[4]}}</li>
+                    <li>Occupancy: {{room[5]}}</li>
+                   
+
+
+                </ul>
+            </div>   
+            <!-- Amenities -->
+            <div class="amenities">
+                <h3>Amenities:</h3>
+                <ul>
+                    <li>{{room[19]}}</li>
+                    <li>{{room[20]}} bathroom</li>
+                    <li>{{room[21]}}</li>
+                    <li>{{room[22]}} Air Conditioning</li>
+                    <li>{{room[23]}} Parking Facility</li>
+                    <li>Nearby Facilities {{room[14]}}  </li>
+
+                    
+                    
+
+
+                </ul>
+            </div>   
+            <div class="amenities">
+                <h3>Pricing:</h3>
+                <ul>
+                    <li>Monthly Rent {{room[15]}}</li>
+                    <li>Utility Included {{room[16]}}  </li>
+                    <li>Advance Payment {{room[17]}} Month</li>
+                    
+
+
+                </ul>
+            </div>   
+            
+
+            <!-- Actions -->
+            <div class="actions">
+                <button onclick="window.location.href='/rooms';">See More Rooms</button>
+            </div>
+            
+        </div>
+    </div>
+    {% elif table == 'rooms2' %}
+    <div class="container">
+        <h5> ROOM DETAILS </h5>
+        <!-- Room Images -->
+        <div class="room-images">
+            <img src="/static/images/rooms/becca-tapert-sY5RjMB1KkE-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/simon-berger-HSy0QXIRafg-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/gina-lin-m27OTMegUyA-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/premium_photo-1661901403017-33d1c0252ac9.avif" alt="Room Image 1">
+            <img src="/static/images/rooms/frames-for-your-heart-FqqiAvJejto-unsplash.jpg" alt="Room Image 1">
+            <img src="/static/images/rooms/jessica-lewis-thepaintedsquare-gCWabF9Z9pI-unsplash.jpg" alt="Room Image 1">
+            
+        </div>
+        <h6>{{time_since_posted}}</h6>
+
+        <!-- Room Details -->
+        <div class="details">
+            <h1 class="room-title" style="text-transform: uppercase;">{{ room[1] }}</h1>
+            <p class="price">For : {{room[3]}}</p>
+            <p class="location">Located in: {{room[10]}}</p>
+            <p class="location">Pin: {{room[7]}}</p>
+            <p class="location">City: {{room[6]}}</p>
+            <p class="contact">{{room[14]}}</p>
+            <p class="contact">{{room[13]}}</p>
+            
+
+            <!-- Amenities -->
+            <div class="amenities">
+                <h3>Basic Info:</h3>
+                <ul>
+                    <li>{{room[2]}}</li>
+                
+                   
+
+
+                </ul>
+            </div>   
+            
+            
+
+            <!-- Actions -->
+            <div class="actions">
+                <button onclick="window.location.href='/rooms';">More Rooms</button>
+            </div>
+            
+        </div>
+    </div>
+    {% endif %}
+    {% include 'footer.html' %}
+
+</body>
+</html>

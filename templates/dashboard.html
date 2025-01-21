@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Finder Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #05dada 0%, #020b1b 100%);
+            font-family: Arial, sans-serif;
+        }
+
+        .dashboard-container {
+            background: rgba(255, 255, 255, 0);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.945);
+            padding: 30px 40px;
+            text-align: center;
+            width: 400px;
+        }
+
+        .logo {
+            margin-top: -40px;
+        }
+
+        .logo img {
+            width: 250px;
+            height: auto;
+            border: none;
+            border-radius: 0;
+          
+        }
+
+        .dashboard-container h1 {
+            margin-bottom: 20px;
+            margin-top: -20px;
+            font-size: 30px;
+            color: #f5f4f4;
+        }
+
+        .dashboard-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            padding: 15px 4px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+        .close-btn {
+    display: flex;
+    position: relative; /* Change to absolute for correct positioning */
+    top: -85px; /* Distance from the top of the container */
+    right: -400px; /* Distance from the right of the container */
+    font-size: 25px;
+    cursor: pointer;
+    color: #000000a4;
+    border: none;
+    background-color: rgba(255, 0, 0, 0);
+    z-index: 1000;
+}
+
+.close-btn:hover {
+    color: rgb(0, 0, 0); /* Change color on hover */
+    transform: scale(1.1);
+}
+
+        .room-owner-btn {
+            background-color: #020c42;
+        }
+
+        .room-seeker-btn {
+          background-color: #020c42;
+        }
+
+        .dashboard-button i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .dashboard-button:hover {
+      
+          background-color: #061258;
+            
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="logo">
+            <img src="/static/images/logo4.png" alt="Site Logo">
+        </div>
+        <button class="close-btn" onclick="goHome()"><i class="fa fa-times"></i></button>
+
+        <h1>Post a Room</h1>
+        <p>select your role:</p>
+        <a href="/form1" class="dashboard-button room-owner-btn">
+            <i class="fas fa-home"></i> Room Owner
+        </a>
+        <a href="/in_form1" class="dashboard-button room-seeker-btn">
+            <i class="fas fa-user-friends"></i> Room Informant
+
+
+        </a>
+    </div>
+    <script>
+        function goHome() {
+            window.location.href = "/home";
+        }
+    </script>
+</body>
+</html>

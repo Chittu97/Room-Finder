@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/static/roompost.css">
+</head>
+
+<body class="roompost">
+
+    <div id="page" class="site">
+        <div class="container">
+            <div class="form-box">
+                <div class="progress">
+                    <button class="close-btn" onclick="goHome()"><i class="fa fa-times"></i></button>
+                    <a href="{{ url_for('roompost') }}" class="logout-btn">Dashboard</a>
+                    <div class="logo">
+                        <a href="/"><span>Room</span>Finder</a>
+                        <h4>For Room Owner</h4>
+                    </div>
+                    <ul class="progress-steps">
+                        <li class="step active">
+                            <span>1</span>
+                            <h4>Basic Room Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>2</span>
+                            <h4>Location Details</h4>
+                        </li>
+                        <li class="step">
+                            <span>3</span>
+                            <h4>Pricing Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>4</span>
+                            <h4>Room Features and Amenities</h4>
+                        </li>
+                        <li class="step">
+                            <span>5</span>
+                            <h4>Contact Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>6</span>
+                            <h4>Additional Information</h4>
+                        </li>
+                    </ul>
+                </div>
+                <form action="{{ url_for('form1') }}" method="POST" enctype="multipart/form-data">
+                    <!-- Basic Room Information Section -->
+                    <div class="form-one form-step">
+                        <h2>Basic Room Information</h2>
+                        <p>Enter room information correctly</p>
+                        <div>
+                            <label for="room_name">Room Name:<span class="mandatory">*</span></label>
+                            <input type="text" id="room_name" name="room_name" placeholder="Enter default room name" required value="{{ data.get('room_name', '') }}">
+                        </div>
+                        <div>
+                            <label for="room-type">Room Type:<span class="mandatory">*</span></label>
+                            <select id="room-type" name="room_type" required>
+                                <option value="" disabled {% if not data.get('room_type') %}selected{% endif %}>Select Room Type</option>
+                                <option value="single-room" {% if data.get('room_type') == 'single-room' %}selected{% endif %}>Single Room</option>
+                                <option value="shared-room" {% if data.get('room_type') == 'shared-room' %}selected{% endif %}>Shared Room</option>
+                                <option value="1bhk" {% if data.get('room_type') == '1bhk' %}selected{% endif %}>1 BHK</option>
+                                <option value="2bhk" {% if data.get('room_type') == '2bhk' %}selected{% endif %}>2 BHK</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="gender-preference">Gender Preference:<span class="mandatory">*</span></label>
+                            <select id="gender-preference" name="gender_preference" required>
+                                <option value="" disabled {% if not data.get('gender_preference') %}selected{% endif %}>Select Preference</option>
+                                <option value="male" {% if data.get('gender_preference') == 'male' %}selected{% endif %}>Male</option>
+                                <option value="female" {% if data.get('gender_preference') == 'female' %}selected{% endif %}>Female</option>
+                                <option value="both" {% if data.get('gender_preference') == 'both' %}selected{% endif %}>Both</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="furnished-status">Furnished Status:<span class="mandatory">*</span></label>
+                            <select id="furnished-status" name="furnished_status" required>
+                                <option value="" disabled {% if not data.get('furnished_status') %}selected{% endif %}>Select Furnished Status</option>
+                                <option value="fully-furnished" {% if data.get('furnished_status') == 'fully-furnished' %}selected{% endif %}>Fully Furnished</option>
+                                <option value="semi-furnished" {% if data.get('furnished_status') == 'semi-furnished' %}selected{% endif %}>Semi-Furnished</option>
+                                <option value="unfurnished" {% if data.get('furnished_status') == 'unfurnished' %}selected{% endif %}>Unfurnished</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="occupancy-limit">Occupancy Limit:<span class="mandatory">*</span></label>
+                            <input type="number" id="occupancy-limit" name="occupancy_limit" placeholder="Number of people" required value="{{ data.get('occupancy_limit', '') }}">
+                        </div>
+                        <div>
+                            <label>Attached Facilities:<span class="mandatory">*</span></label>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="attached_facilities" value="bathroom" {% if 'bathroom' in data.get('attached_facilities', []) %}checked{% endif %}> Bathroom</label>
+                                <label><input type="checkbox" name="attached_facilities" value="balcony" {% if 'balcony' in data.get('attached_facilities', []) %}checked{% endif %}> Balcony</label>
+                                <label><input type="checkbox" name="attached_facilities" value="kitchen" {% if 'kitchen' in data.get('attached_facilities', []) %}checked{% endif %}> Kitchen</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="images">Upload Room Images (Max 5):</label>
+                            <input type="file" id="images" name="images[]" accept=".jpeg, .jpg, .png" multiple>
+                            <p>Selected Images: <span id="imageCount">0</span></p> <!-- Count Display -->
+                        </div>
+                        <div>
+                            <label for="availability-date">Room Posting Date:<span class="mandatory">*</span></label>
+                            <input type="date" id="availability-date" name="roompost_date" required value="{{ data.get('roompost_date', '') }}">
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="btn-group">
+                        <button type="submit" name="next" class="btn-next">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript function to redirect to home page
+        function goHome() {
+            window.location.href = "/home";
+        }
+        
+        document.addEventListener("DOMContentLoaded", () => {
+      const imageInput = document.getElementById("images");
+      const imageCountDisplay = document.getElementById("imageCount");
+
+      imageInput.addEventListener("change", () => {
+        const selectedFiles = imageInput.files; // Get selected files
+        const totalFiles = selectedFiles.length; // Count files
+
+        if (totalFiles > 5) {
+          alert("You can only upload up to 5 images.");
+          imageInput.value = ""; // Clear the input field
+          imageCountDisplay.textContent = "0"; // Reset count display
+          return;
+        }
+
+        // Display the count of selected images
+        imageCountDisplay.textContent = totalFiles.toString();
+      });
+    });
+
+    </script>
+        {% include 'footer.html' %}
+
+</body>
+
+</html>

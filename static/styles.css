@@ -1,0 +1,797 @@
+/* Welcome page style */
+body.welcome {
+    font-family: Arial, sans-serif;
+    background: #022a31;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+body.welcome  {
+    height: 100vh;
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+body.welcome::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    background: rgba(0, 0, 0, 0.144); /* Dark overlay */
+}
+
+.welcome .welcome-container {
+position: relative;
+    z-index: 3;
+    max-width: 900px;
+    padding: 30px;
+text-align: center;
+    background-color: #000000; /* Yellow theme */
+    
+padding: 10px;
+border-radius: 25px;
+box-shadow:  0 4px 10px hsla(0, 0%, 0%, 0.945);
+}
+
+.welcome .welcome-container {
+    background: rgba(0, 0, 0, 0.534);
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+  .welcome-container:hover{
+    background: rgba(0, 0, 0, 0.534);
+    
+    }
+
+.welcome h1 {
+    color: #ffffff; /* Deep orange for a welcoming tone */
+    margin-bottom: 10px;
+}
+
+
+.welcome p {
+    color: #ff7b00; /* Light grey for the subtitle */
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.welcome p:hover {
+   
+    color: #f3f1f1;
+
+}
+.welcome .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+ .welcome .btn {
+    background: #00c2fdad;
+    color: rgb(255, 255, 255);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.welcome .btn:hover {
+    background: #00c2fd;
+    
+    color:#000000 /* Slightly darker orange */
+}
+/* this section will be completed */
+
+
+
+
+
+
+
+/* Home- Page    Style*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body.home {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+.home a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar Styles */
+.home .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #032f3c; /* Yellow theme */
+    position: fixed; /* Fix the navbar at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure navbar takes full width */
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.home .logo img {
+    width: 150px;
+    height: auto;
+}
+.home .logo img:hover {
+    cursor: pointer;
+}
+.home .nav-items {
+list-style: none;
+display: flex;
+justify-content: flex-start;
+margin-right: 20px ;
+padding: 0;
+}
+
+.home .nav-items li {
+margin: 0 15px; /* Space between navbar items */
+}
+
+.home .nav-items a {
+text-decoration: none; /* Remove underline */
+font-size: 16px;
+font-weight: bold;
+color: #ffffff; /* Default text color */
+padding: 5px 10px;
+transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Custom CSS Property (Replace with your desired property) */
+.home .nav-items a:hover {
+text-decoration: underline;
+border-radius: 5px; /* Rounded corners */
+}
+
+    
+
+
+.home nav .menu-icon{
+display: block;
+margin-right: 0;
+}
+
+
+
+.home .user-section {
+    display: flex;
+    align-items: center;
+}
+
+
+.home .username {
+    color: #4CAF50;
+    font-size: 18px;
+    font-family: 'poppins';
+    margin-right: 5px;
+}
+
+.profile-img {
+    cursor: pointer;
+    border-radius:50%;
+    margin-top: 3%;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    transition: transform 0.2s;
+    margin-right:200px;
+    object-fit: cover;
+
+
+}
+
+.profile-pic:hover {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+
+
+ .home .lock {
+    color: #000000;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    padding: 1px 5px;
+    text-decoration: none;
+    margin-left: -400px;
+    border-radius: 5px;
+
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.home .lock:hover {
+    background-color: rgb(189, 187, 187);
+}
+
+
+/* Hero Section */
+.home .hero {
+    height: 80vh;
+    background: url('/static/images/home.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+.home .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+.home .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    padding: 20px;
+    
+}
+.home .hero-text{
+    margin-top: -20px;
+    font-size: 3rem; /* Adjust the size as needed */
+    color: white; /* Adjust text color */
+    line-height: 1.2; /* Adjust line spacing */
+    max-width: 125%; /* Optional: Ensure the text doesn't span too wide */
+    white-space: normal; /* Allow text to wrap */
+    
+}
+.home .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.home form{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.home .txt{
+    padding-left: 20px;
+    font-size: 18px;
+    border: none;
+    height: 40px;
+    width: 700px;
+    
+}
+.home .txt:focus{
+    outline: none;
+}
+.home .search-btn{
+    background-color: rgb(3, 17, 7);
+color: white;
+font-size: 20px;
+border: none;
+height: 100%;
+width: 20%;
+position: absolute;
+right: 0;
+}
+.home .search-btn:hover{
+    background-color: rgb(3, 27, 7);
+    color:#ffffff;
+    cursor: pointer;
+}
+
+/* Scrollable Content Section */
+.home .content {
+    padding: 100px;
+    text-align: center;
+}
+.home .content h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+.home .content p {
+    font-size: 1rem;
+    color: #666;
+}
+.home .content2{
+    padding: 200px;
+}
+/* Image Slider Styling */
+.home .slider-container {
+    background: rgba(0, 0, 0, 0.534);
+    width: 50%; /* Set the width */
+    max-width: 1000px; /* Optional: You can set a maximum width */
+    margin: 40px auto; /* Center the container */
+    padding: 20px 0; /* Adjust padding for a fixed height */
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(19, 16, 16, 0.979);
+    height: 400px; /* Fixed height for the container */
+    overflow: hidden; /* Prevent content from overflowing */
+    position: relative;
+}
+
+.home .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.home .slides img {
+    width: 100%;
+    height: 100%; /* Ensure the images fill the container without stretching */
+    object-fit: cover; /* Crop images to fit the container without distortion */
+}
+
+
+.home .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+/* Add navigation arrows if needed */
+.home .slider-container .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.home .slider-container .arrow-left {
+    left: 10px;
+}
+
+.home .slider-container .arrow-right {
+    right: 10px;
+}
+
+/* Media Query for Tablets */
+@media (max-width: 768px) {
+    .nav-items {
+        display: none; /* Hide navbar items */
+    }
+    .user-section {
+        margin-left: auto;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+/* Media Query for Mobile */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+    .logo img {
+        width: 100px; /* Smaller logo */
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    .hero p {
+        font-size: 0.9rem;
+    }
+    .cta-button {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+/* this section will be completed */
+
+
+/* flash message style */
+
+.flash-message {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    z-index: 9999;
+    width: 300px;
+}
+
+.flash-message {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fdfdfd;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flash-message.success {
+    background-color: #28a745; /* Green */
+}
+
+.flash-message.error {
+    background-color: #dc3545; /* Red */
+}
+
+.flash-message.info {
+    background-color: #17a2b8; /* Blue */
+}
+
+.flash-message.warning {
+    background-color: #ffc107; /* Yellow */
+}
+
+.flash-message p {
+    margin: 0;
+    font-weight: bold;
+}
+
+
+
+
+
+/* this section will be completed */
+
+
+
+/* Login Page Style */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+
+html,body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+body.login{ /* Body login class */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f8f8f8;
+    background-size: 20px 20px;
+    font-size: 14px;
+    background: #022a31;
+    height: 100vh;
+}
+
+body.login::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0); /* Dark overlay */
+}
+
+
+/* Close button style */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #333;
+}
+.left-arrow-btn {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+    
+}
+.close-btn:hover {
+    color: rgb(0, 0, 0); /* Change color on hover */
+}
+.left-arrow-btn:hover {
+    color: rgb(0, 0, 0); /* Change color on hover */
+}
+
+/* To make sure form is correctly positioned */
+.form {
+    position: relative;
+}
+.login a {
+    display: flex;          /* Set parent to flexbox */
+    justify-content: flex-end; /* Align items to the right */
+    color: #da1313;         /* Text color */
+    margin-right: 10px; 
+}
+.login a:hover {
+        text-decoration: none;
+    }
+
+    .login a:hover {
+    text-decoration: none;
+}
+
+.login .form {
+    height: 75vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgba(240, 50, 50, 0.74);
+    position: relative;
+    max-width: 420px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for the form */
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(250, 250, 250, 0.979);
+}
+.login .logo img {
+    width: 200px;
+    height: 4.5rem;
+    size-adjust: 30px;
+    margin-top:-20px ;
+    
+    
+}
+.login .form .logo, .login h2 {
+    margin: 0;
+    padding-bottom: 10px;
+    color: #022a31;
+    font-size: 28px;
+    border-bottom: 3px solid #ff5501;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+label {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.login input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background: none;
+    outline: none;
+    resize: none;
+    border: 2px solid #020202;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding-left: 40px;
+}
+.login .eye-icon {
+    position: absolute; /* Position relative to the .password-container */
+    right: 10px; /* Position 10px from the right side */
+    top: 10%; /* Center the icon vertically */
+    transform: translateY(-50%); /* Adjust the vertical position */
+    cursor: pointer;
+    font-size: 18px;
+    color: #03a567;
+}
+
+.login .eye-icon:hover {
+    color: #d81313; /* Change color on hover */
+}
+
+.login input:focus {
+    border-color: #ff5501;
+    box-shadow: 0 0 10px rgba(243, 82, 1, 0.938);
+}
+
+
+/* General styling for the form */
+
+
+  /* Checkbox container to group checkbox and label */
+  .checkbox-container {
+      display: flex;
+    align-items: center;
+    gap: 5px; /* Space between checkbox and label */
+    margin-left: 10px;
+
+    
+  }
+  
+  /* Styling the checkbox itself */
+  .checkbox-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: -10px;
+    
+  }
+  
+  /* Styling the label */
+  .checkbox-container label {
+      font-size: 16px;
+      color: #161414;
+      cursor: pointer;
+      margin-top: -30px;
+    text-transform: unset; /* Makes all text lowercase */
+    font-style: italic;
+
+    
+  }
+  .checkbox-container label:hover{
+    color: #022a31;
+}
+
+/* Optional: Checkbox with hover effect */
+.checkbox-container input[type="checkbox"]:hover {
+    border: 2px solid #000000;
+}
+
+/* Optional: Checkbox when checked */
+.checkbox-container input[type="checkbox"]:checked {
+    background-color: #ffa600;
+    border: 10px solid #ff8800;
+}
+
+.login .relative {
+    position: relative;
+    color: #040a03;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.relative i.fa {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    color: #000000;
+    text-align: center;
+    border-radius: 0 4px 4px 0;
+    transition: all 0.45s ease-in-out;
+}
+
+input:focus + .fa {
+    color: #0c093f;
+    transform: rotate(360deg);
+}
+
+.login .movebtn_movebtnsu {
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    border: 2px solid #909aa7d2;
+    background: #ff5501;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all .3s;
+    margin-top: -20px;
+}
+
+.login .movebtn_movebtnsu:hover {
+    background: #646171;
+    color: #fff;
+    border-color: #646171;
+    box-shadow: 0px 0 5px 0 #646171;
+}
+
+.login .social-btn {
+    display: flex;
+    gap: 10px; /* Adds space between the buttons */
+    justify-content: center; /* Centers the buttons horizontally */
+    margin-top: 5px; /* Adds some space from the top */
+}
+
+/* Style for individual buttons */
+.login .social-btn button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px; /* Adds padding around the text and icon */
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ccc; /* Border around the buttons */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.login .social-btn button i {
+    margin-right: 10px; /* Adds space between icon and text */
+}
+
+/* Google button styles */
+.login .google {
+    background-color: #db4437; /* Google red color */
+    color: white; /* White text */
+}
+
+.login .google:hover {
+    background-color: #c1351d; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Facebook button styles */
+.login .facebook {
+    background-color: #3b5998; /* Facebook blue color */
+    color: white; /* White text */
+}
+
+.login .facebook:hover {
+    background-color: #365899; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+
+.login .sign-up {
+    margin-top: 4px;
+    text-align: center;
+}
+
+.login h3{
+    color: #ff0101;
+    font-weight: bold;
+    font-size: 17px;
+    justify-content: center;
+    background: none;
+    margin-top: 15px;
+    border: none
+    
+}
+.login .lock {
+   color: #030b55;
+   text-align: center;
+   justify-content: center;
+   font-size: large;
+   font-weight: bold;
+   margin-top: 3px;
+   text-decoration: none;
+}
+.login .lock:hover {
+    text-decoration: underline;
+}
+.login .sign-up .signbtn:hover{
+    color: #000000;
+    background: none;
+    text-decoration: underline;
+}
+.login .signup {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .login .form {
+        padding: 20px;
+    }
+}
+/* this section will be completed */
+
+
+/* Rooom post styles */
+

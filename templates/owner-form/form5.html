@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/roompost.css">
+</head>
+
+<body class="roompost">
+    <div id="page" class="site">
+        <div class="container">
+            <div class="form-box">
+                <div class="progress">
+                    <button class="close-btn" onclick="goHome()"><i class="fa fa-times"></i></button>
+                    <a href="{{ url_for('roompost') }}" class="logout-btn">Dashboard</a>
+                    <div class="logo">
+                        <a href="/"><span>Room</span>Finder</a>
+                        <h4>For Room Owner</h4>
+                    </div>
+                    <ul class="progress-steps">
+                        <li class="step">
+                            <span>1</span>
+                            <h4>Basic Room Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>2</span>
+                            <h4>Location Details</h4>
+                        </li>
+                        <li class="step">
+                            <span>3</span>
+                            <h4>Pricing Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>4</span>
+                            <h4>Room Features and Amenities</h4>
+                        </li>
+                        <li class="step active">
+                            <span>5</span>
+                            <h4>Contact Information</h4>
+                        </li>
+                        <li class="step">
+                            <span>6</span>
+                            <h4>Additional Information</h4>
+                        </li>
+                    </ul>
+                </div>
+                <form method="POST" action="{{ url_for('form5') }}">
+                    <!-- Contact Information Section -->
+                    <div class="form-five form-step">
+                        <div class="bg-svg"></div>
+                        <h2>Contact Information</h2>
+                        <p>Enter Your Contact correctly</p>
+                        
+                        <div>
+                            <label for="full-name">Full Name:<span class="mandatory">*</span></label>
+                            <input type="text" id="full-name" name="full_name" 
+                                   placeholder="Enter your full name"
+                                   value="{{ data.get('full_name', '') }}" required>
+                        </div>
+                        
+                        <div>
+                            <label for="phone">Phone Number:<span class="mandatory">*</span></label>
+                            <input type="tel" id="phone" name="phone" 
+                                   placeholder="Enter your phone number" pattern="[0-9]{10}"
+                                   value="{{ data.get('phone', '') }}" required>
+                        </div>
+                        
+                        <div>
+                            <label for="alternate-phone">Alternate Phone Number (Optional):</label>
+                            <input type="tel" id="alternate-phone" name="alternate_phone"
+                                   placeholder="Enter an alternate phone number" pattern="[0-9]{10}"
+                                   value="{{ data.get('alternate_phone', '') }}">
+                        </div>
+                        
+                        <div>
+                            <label for="email">Email Address:<span class="mandatory">*</span></label>
+                            <input type="email" id="email" name="email" 
+                                   placeholder="Enter your email address" 
+                                   value="{{ data.get('email', '') }}" required>
+                        </div>
+                        
+                        <div>
+                            <label>Communication Preference:<span class="mandatory">*</span></label>
+                            <div>
+                                <label><input type="checkbox" name="communication" value="call"
+                                              {% if 'call' in data.get('communication', []) %}  checked {% endif %}> Call</label>
+                                <label><input type="checkbox" name="communication" value="sms"
+                                              {% if 'sms' in data.get('communication', []) %}checked{% endif %}> SMS</label>
+                                <label><input type="checkbox" name="communication" value="whatsapp"
+                                              {% if 'whatsapp' in data.get('communication', []) %}checked{% endif %}> WhatsApp</label>
+                                <label><input type="checkbox" name="communication" value="email"
+                                              {% if 'email' in data.get('communication', []) %}checked{% endif %}> Email</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="visit-address">Address for Visits (Optional):</label>
+                            <textarea id="visit-address" name="visit_address" rows="3" 
+                                      placeholder="Enter address for visits (optional)">{{ data.get('visit_address', '') }}</textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Buttons -->
+                    <div class="btn-group">
+                        <button type="button" onclick="window.location.href='/form4'" name="prev" class="btn-prev">Back</button>
+                        <button type="submit" name="next" class="btn-next">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to redirect to home page
+        function goHome() {
+            window.location.href = "/home";
+        }
+
+        // JavaScript function to go back to the previous form
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+        {% include 'footer.html' %}
+
+</body>
+
+</html>

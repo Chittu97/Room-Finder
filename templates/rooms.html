@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Room Availability with Filter Popup</title>
+    
+    <style>
+        /* General Styles */
+        html, body {
+            height: 100%; /* Ensures that the background color applies to the full screen */
+            margin: 0; /* Removes the default margin */
+            font-family: 'poppins', sans-serif;
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg'); 
+            background-position: center;
+            background-repeat: repeat;
+            background-size: 7%;
+            padding: 0;
+            overflow-x: hidden; /* Disable horizontal scrollbar */
+            overflow-y: auto; /* Ensures vertical scrolling */
+            min-height: 100vh; /* Makes the container taller than the viewport */
+
+        }
+
+       .room .navbar {
+            position:inherit;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4a5455;
+            color: rgb(25, 16, 75);
+            padding: 0;
+        }
+
+        .logo img {
+            max-width: 180px; /* Maximum width */
+            height: auto;
+            cursor: pointer;
+        }
+
+        .search-bar .form-control {
+            width: 300px;
+            padding: 0.5rem;
+            border-radius: 6px;
+            margin-left: 250px;
+        }
+
+        .room .btn.btn-outline-success {
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            padding: 2px;
+            font-size: 15px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+       
+
+        .btn.btn-outline-success:hover {
+            background-color: #000000;
+            color: white;
+            border: 2px solid #ffffff;
+        }
+
+        .btn.btn-outline-success:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5);
+        }
+
+        
+
+        .filter-icon {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            margin-right: 100px;
+            justify-content: center;
+            padding: 1px;
+            border: 1px solid #00000000
+        }
+        .filter-icon:hover {
+            border: solid 2px;
+            border-radius: 6px;
+            background-color: #000000;
+        }
+
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup.hidden {
+            display: none;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .popup h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .popup .form-select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .popup-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-cancel {
+            background-color: #f44336;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-apply {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 100px;
+            justify-content:center;
+            width: 100%;
+            
+            margin-top: 20px;
+            padding: 2em;
+        }
+        .flash-message {
+    
+    margin-top: 30px;
+    margin-right: 200px;
+    z-index: 9999;
+    width: 300px;
+}
+
+.flash-message {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flash-message.success {
+    background-color: #28a745; /* Green */
+}
+
+        .card {
+            background-image: url('/static/images/card_background.jpg');
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+        }
+        .card-img {
+    width: 100%;            
+    height: 150px;          
+    object-fit: cover;      
+    border-radius: 1px;     
+}
+.navbar-link {
+    color: #000000; /* White text color */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px; /* Set the font size */
+    margin-right: 300px; /* Adds space from other elements */
+    text-decoration: none; /* Removes underline from the link */
+    border: 2px solid #000000;
+    padding: 1px;
+    border-radius: 6px;
+    background-color: lightgray;
+
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.navbar-link:hover {
+    color: #000000; /* Green color when hovered */
+    background-color: #ffffff;
+}
+
+
+
+        .card-content {
+            padding: 7px;
+            margin-left: 0px;
+            
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-location,
+        .card-rating {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+        @media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-bar {
+        margin-left: 0;
+        width: 100%;
+    }
+    .filter-icon {
+        margin-right: 0;
+    }
+    .navbar-link {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+}
+
+    
+
+
+#latestBtn:hover {
+    background-color: rgb(212, 212, 212);
+}
+
+#oldestBtn:hover {
+    background-color: rgb(212, 212, 212);
+}
+    </style>
+</head>
+<body class="room">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/home">
+                <img src="/static/images/logo2.png" alt="Site Logo">
+            </a>
+            </div>
+        <form  action="/search" method="get" class="search-bar">
+            <input type="text" class="form-control" name="city" placeholder="Search by city or location" value="">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <!-- Filter Icon -->
+        <button id="filter-btn" class="filter-icon">
+            <i class="fas fa-sliders-h"></i>Filter
+        </button>
+    
+        <!-- Added Text with Link -->
+        <a href="/roompost" class="navbar-link">Post a room  <i class="fas fa-plus-circle"></i></a>
+    </nav>
+    
+    <h1>Available Rooms</h1>
+    <div style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin-left: 21%;
+        margin-top: -4%;">
+        <!-- Latest Button -->
+        <a href="{{ url_for('rooms', sort='latest') }}">
+            <button id="latestBtn" 
+                style="padding: 10px 20px; 
+                       background-color: {% if sort_order == 'latest' %}black{% else %}white{% endif %}; 
+                       color: {% if sort_order == 'latest' %} white{% else %}black{% endif %}; 
+                       border: 1px solid #ccc; 
+                       cursor: pointer;
+                       border-radius: 10px;">
+                Latest
+            </button>
+        </a>
+    
+        <!-- Oldest Button -->
+        <a href="{{ url_for('rooms', sort='oldest') }}">
+            <button id="oldestBtn" 
+                style="padding: 10px 20px; 
+                       background-color: {% if sort_order == 'oldest' %}black{% else %}white{% endif %};
+                        color: {% if sort_order == 'oldest' %} white{% else %}black{% endif %}; 
+                       border: 1px solid #ccc; 
+                       cursor: pointer;
+                        border-radius: 10px;">
+                Oldest
+            </button>
+        </a>
+        <style>
+            #latestBtn:hover {
+                background-color: #050607; /* Light Blue */
+            }
+        
+            #oldestBtn:hover {
+                background-color: #add8e6; /* Light Blue */
+            }
+        </style>
+    </div>
+    
+    
+    
+
+ {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div id="flash-container">
+        {% for category, message in messages %}
+          <div class="flash-message {{ category }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+   {% endwith %}
+
+    <!-- Filter Popup -->
+    <div id="filter-popup" class="popup hidden">
+        <div class="popup-content">
+            <h4>Filter Options</h4>
+            <form method="GET" action="/filtered_rooms" id="filter-form">
+                <label for="city">City:</label>
+                <select id="city" name="city" class="form-select">
+                    <option value="" selected disabled>Select City</option>
+                    <option value="Durg">Durg</option>
+                    <option value="Bhilai">Bhilai</option>
+                    <option value="Kawardha">Kawardha</option>
+                    <option value="Dhamtari">Dhamtari</option>
+                    <option value="Bilaspur">Bilaspur</option>
+                </select>
+            
+                <label for="room_type">Room Type:</label>
+                <select id="room_type" name="room_type" class="form-select">
+                    <option value="" selected disabled>Select Room Type</option>
+                    <option value="single">Single Room</option>
+                    <option value="double">Double Room</option>
+                    <option value="1BHK">1BHK</option>
+                    <option value="2BHK">2BHK</option>
+                </select>
+            
+                <label for="gender_preference">Gender Preference:</label>
+                <select id="gender_preference" name="gender_preference" class="form-select">
+                    <option value="" selected disabled>Select Gender</option>
+                    <option value="any">Both</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            
+                <div class="popup-buttons">
+                    <button type="button" class="btn btn-cancel" id="close-popup">Cancel</button>
+                    <button type="submit" class="btn btn-apply">Apply Filters</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    
+   
+
+    <div class="card-container">
+        {% for room in combined_rooms %}
+        <a href="{{ url_for('room_details', table=room[5], room_id=room[6]) }}" style="text-decoration: none; color: inherit;">
+
+        <div class="card">
+            <img src="/static/images/room_finder.jpg" alt="Room Image" 
+            style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+        
+            <div class="card-content">
+                <h3 style="color: rgb(4, 0, 255);font-family: Arial, Helvetica, sans-serif;text-transform: uppercase; /* Text ko uppercase me convert karega */
+;">{{ room[0] }}</h3>  <!-- room_name -->
+                <span style="color:#fa6407; font-size: 18px;">Gender_Preference:</span> {{ room[2] }}</p>  <!-- city -->
+                <span style="color:#fa6407; font-size: 18px;">City:</span> {{ room[3] }}</p>  <!-- city -->
+                <span style="color:#fa6407; font-size: 18px ;"><i class="fas fa-map-marker-alt"></i> : {{ room[4] }}</p>  <!-- address -->
+                <span style="color:#fa6407; font-size: 18px ;">Posted:</span> {{ room[5] }}</p>  <!-- source -->
+
+            </div>       
+                
+            
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+    
+
+
+    <script>
+
+function filterRooms(order) {
+    // Redirect the user to the same page with the sort query
+    window.location.href = `/rooms?sort=${order}`;
+}
+
+
+        setTimeout(() => {
+          const flashContainer = document.getElementById('flash-container');
+          if (flashContainer) {
+            flashContainer.style.transition = 'opacity 0.2s ease';
+            flashContainer.style.opacity = '0';
+            setTimeout(() => flashContainer.remove(), 500);
+          }
+        }, 2000); // 5 seconds
+      </script>
+
+    <script>
+        // Get DOM Elements
+        const filterBtn = document.getElementById("filter-btn");
+        const filterPopup = document.getElementById("filter-popup");
+        const closePopup = document.getElementById("close-popup");
+
+        filterBtn.addEventListener("click", () => {
+            filterPopup.classList.remove("hidden");
+        });
+
+        closePopup.addEventListener("click", () => {
+            filterPopup.classList.add("hidden");
+        });
+
+        // Optional: Add form submission logic for filters
+        const filterForm = document.getElementById("filter-form");
+        filterForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            filterPopup.classList.add("hidden");
+            // Add your filtering logic here
+        
+        });
+    </script>
+        {% include 'footer.html' %}
+
+</body>
+</html>

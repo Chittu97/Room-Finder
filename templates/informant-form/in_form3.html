@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Step Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/roompost.css">
+</head>
+
+<body>
+    <div id="page" class="site">
+        <div class="container">
+            <div class="form-box">
+                <div class="progress">
+                    <button class="close-btn" onclick="goHome()"><i class="fa fa-times"></i></button>
+                    
+                    <a  href="{{ url_for('roompost') }}" class="logout-btn">Dashboard</a>
+                    <div class="logo">
+                        <a href="/"><span>Room</span>Finder</a>
+                        <br>
+                        <h4>For Room Informant</h4> 
+                    </div>
+                    <ul class="progress-steps">
+                        <li class="step ">
+                            <span>1</span>
+                            <h4>Basic Room Information<br>
+                        </li>
+                        <li class="step">
+                            <span>2</span>
+                            <h4>Location Details.
+                                <br>
+                        </li>
+                        <li class="step active ">
+                            <span>3</span>
+                            <h4>Contact Information.
+
+                                <br>
+                        </li>
+                       
+                        
+                       
+                    </ul>
+                </div>
+                <form method="POST" action="{{ url_for('in_form3') }}">
+                    <!-- Personal Information Section -->
+                    <div class="form-five form-step">
+                        <div class="bg-svg"></div>
+                        <h2>Contact Information </h2>
+                        <p> Enter Your Contact correctly</p>
+                        
+                        <div>
+                            <label for="full-name">Full Name( send room Informant ):<span class="mandatory">*</span></label>
+                            <input type="text" id="full-name" name="full_name" 
+                                   placeholder="Enter your full name"
+                                   value="{{ data.get('full_name', '') }}" required>
+                        </div>                        
+                        <div>
+                            <label for="full-name">Owner's Name:</label>
+                            <input type="text" id="full-name" name="owners_name" placeholder="Enter your full name" 
+                            value="{{ data.get('owners_name', '') }}" >
+                            
+                        </div>
+                        <div>
+                            <label for="phone">Owner's Phone Number:<span class="mandatory">*</span></label>
+                            <input type="tel" id="phone" name="owners_phone" 
+                                   placeholder="Enter your phone number" pattern="[0-9]{10}"
+                                   value="{{ data.get('owners_phone', '') }}" required>
+                        </div>
+                        <div>
+                        <label for="alternate-phone">Alternate Phone Number (Optional):</label>
+                        <input type="tel" id="alternate-phone" name="alternate_phone"
+                               placeholder="Enter an alternate phone number" pattern="[0-9]{10}"
+                               value="{{ data.get('alternate_phone', '') }}">
+                    </div>
+                <!-- Buttons -->
+                <div class="btn-group">
+                    <button type="button" onclick="window.location.href='/in_form2'" name="prev" class="btn-prev">Back</button>
+                    <button type="submit" name="next" class="btn-next">Preview Room details</button>
+                </div>
+                    
+                        
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript function to redirect to home page
+        function goHome() {
+            window.location.href = "/home";
+        }
+    </script>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-page</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.hero {
+    background-color: #f8f8f8;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.hero-text {
+    font-size: 2rem;
+    color: #333;
+}
+
+.txt {
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-btn {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.why-choose-us {
+    position: relative;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.content-box {
+    background-color: #3498db;
+    color: white;
+    display: inline-block;
+    padding: 20px 40px;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.floating-shapes {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.circle.red {
+    width: 100px;
+    height: 100px;
+    top: -30px;
+    left: -40px;
+    background-color: #e74c3c;
+}
+
+.circle.blue {
+    width: 80px;
+    height: 80px;
+    top: 20px;
+    right: 60px;
+    background-color: #3498db;
+}
+
+.circle.large {
+    width: 150px;
+    height: 150px;
+    top: 50px;
+    left: 100px;
+    background-color: #f39c12;
+}
+
+.star {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.1);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+.star.orange {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    left: 150px;
+    background-color: #f39c12;
+}
+
+.star.purple {
+    width: 70px;
+    height: 70px;
+    top: -70px;
+    left: -100px;
+    background-color: #9b59b6;
+}
+
+.star.red {
+    width: 90px;
+    height: 90px;
+    top: 30px;
+    left: 180px;
+    background-color: #e74c3c;
+}
+
+    </style>
+</head>
+<body class="home">
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/home">
+                <img src="/static/images/logo2.png" alt="Site Logo">
+            </a>
+        </div>
+        <ul class="nav-items">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('rooms') }}">Available Room</a></li>
+            <li><a href="{{ url_for('roompost') }}">Room Posting</a></li>
+            <li><a href="{{ url_for('about') }}">Roommate</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+        </ul>
+        {% if is_logged_in %}
+        <a href="{{ url_for('profile') }}">
+            <img src="{{ user.profile_pic }}" alt="" class="profile-pic">
+        </a>
+        <a href="{{ url_for('logout') }}" class="lock">Logout</a>
+        {% else %}
+        <a href="{{ url_for('login', action='login') }}" class="lock">Sign In</a>
+        <a href="{{ url_for('login', action='register') }}" class="lock">Sign Up</a>
+        {% endif %}
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-text">Find Your Perfect Room or Roommate with Ease!</h1>
+            <p>Search, post, and find the ideal room or roommate effortlessly.</p>
+            <form action="/search" method="GET">
+                <input class="txt" type="text" name="text" id="txt" placeholder="Enter city or colony name...">
+                <input class="search-btn" type="button" value="Search" onclick="txt.value=''">
+            </form>
+        </div>
+    </header>
+
+    <!-- Scrollable Content Section -->
+    <main class="content">
+        <section class="why-choose-us">
+            <div class="content-box">
+                <h2>Why Choose Us?</h2>
+                <p>We make it easy to find accommodations that suit your needs.</p>
+            </div>
+            <div class="floating-shapes">
+                <div class="circle red"></div>
+                <div class="circle blue"></div>
+                <div class="star orange"></div>
+                <div class="star purple"></div>
+                <div class="circle large yellow"></div>
+                <div class="star red"></div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer Section -->
+    {% include 'footer.html' %}
+</body>
+</html>

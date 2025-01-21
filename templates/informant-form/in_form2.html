@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Step Form</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/roompost.css">
+</head>
+
+<body>
+    <div id="page" class="site">
+        <div class="container">
+            <div class="form-box">
+                <div class="progress">
+                    <button class="close-btn" onclick="goHome()"><i class="fa fa-times"></i></button>
+                    
+                    <a  href="{{ url_for('roompost') }}" class="logout-btn">Dashboard</a>
+                    <div class="logo">
+                        <a href="/"><span>Room</span>Finder</a>
+                        <br>
+                        <h4>For Room Informant</h4> 
+                    </div>
+                    <ul class="progress-steps">
+                        <li class="step ">
+                            <span>1</span>
+                            <h4>Basic Room Information<br>
+                        </li>
+                        <li class="step active">
+                            <span>2</span>
+                            <h4>Location Details.
+                                <br>
+                        </li>
+                        <li class="step ">
+                            <span>3</span>
+                            <h4>Contact Information.
+
+                                <br>
+                        </li>
+                       
+                        
+                       
+                    </ul>
+                </div>
+                <form method="POST" action="{{ url_for('in_form2') }}">
+                    <!-- Personal Information Section -->
+                    <div class="form-two form-step">
+                        <div class="bg-svg"></div>
+                        <h2>Location Details</h2>
+                        <div>
+                            <label for="city">City:<span class="mandatory">*</span></label>
+                            <input type="text" id="city" name="city" placeholder="Enter city name" 
+                                value="{{ data.get('city', '') }}" required>
+                        </div>
+                        <div>
+                            <label for="pin-code">PIN/ZIP Code:</label>
+                            <input type="text" id="pin-code" name="pin_code" placeholder="Enter PIN/ZIP code"
+                                value="{{ data.get('pin_code', '') }}" >
+                        </div>
+                       
+                        <div>
+                                    <label for="locality">Locality:<span class="mandatory">*</span></label>
+                                    <input type="text" id="locality" name="locality" placeholder="Enter locality/colony name"
+                                        value="{{ data.get('locality', '') }}" required>
+                        </div>
+                        <div>
+                            <label for="landmark">Landmark:</label>
+                            <input type="text" id="landmark" name="landmark" placeholder="Enter a nearby landmark"
+                                value="{{ data.get('landmark', '') }}" >
+                        </div>
+                        <div>
+                            <label for="address">Complete Address:<span class="mandatory">*</span></label>
+                            <textarea id="address" name="address" rows="3" placeholder="Enter full address"
+                                required>{{ data.get('address', '') }}</textarea>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    <div class="btn-group">
+                        <button type="button" onclick="window.location.href='/in_form1'" name="prev" class="btn-prev">Back</button>
+                        <button type="submit" name="next" class="btn-next">Next</button>
+                    </div>
+                    
+                        
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // JavaScript function to redirect to home page
+        function goHome() {
+            window.location.href = "/home";
+        }
+    </script>
+
+    
+</body>
+
+</html>

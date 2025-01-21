@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-page</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="home">
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="logo">
+          <a href="/home">
+            <img src="/static/images/logo2.png" alt="Site Logo">
+        </a>
+        </div>
+        <ul class="nav-items">
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('rooms') }}">Available Room</a></li>
+          <li><a href="{{ url_for('roompost') }}">Room Posting</a></li>
+          <li><a href="{{ url_for('about') }}">Roommate</a></li>
+          <li><a href="{{ url_for('about') }}">About</a></li>
+        </ul>
+        {% if is_logged_in %}
+        <a href="{{ url_for('profile2') }}">
+          <img src="{{ profile_image }}" alt="Profile Image" class="profile-img">
+        </a>
+              <a href="{{ url_for('logout') }}" class="lock">Logout <i class="fas fa-sign-out-alt" ></i></a>
+
+    {% else %}
+    <a href="{{ url_for('login', action='login') }}" class="lock">
+      <i class="fas fa-sign-in-alt" ></i> Sign In</a>        
+      
+      <a href="{{ url_for('login', action='register') }}" class="lock">
+        <i class="fas fa-user-plus" ></i> Sign Up</a>
+    {% endif %}
+    </nav>
+
+    <!-- Flash Messages Block -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div id="flash-container">
+        {% for category, message in messages %}
+          <div class="flash-message {{ category }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+   {% endwith %}
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-text">Find Your Perfect Room or Roommate with Ease!</h1>
+            <p>Search, post, and find the ideal room or roommate effortlessly.</p>
+            <form  action="/search" method="get">
+              <input class="txt" type="text" name="city" id="txt" placeholder="Enter city or colony name...and then press Enter">
+                <input class="search-btn" type="button" value="Search" onclick="txt.value=''">
+            </form>
+        </div>
+    </header>
+
+    <!-- Scrollable Content Section -->
+    <main class="content">
+        <section>
+            <h2>Why Choose Us?</h2>
+            <p>We make it easy to find accommodations that suit your needs.</p>
+        </section>
+    </main>
+
+    <!-- Image Slider Section -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slides">
+              <img src="/static/images/rooms/becca-tapert-sY5RjMB1KkE-unsplash.jpg" alt="Room Image 1">
+              <img src="/static/images/rooms/simon-berger-HSy0QXIRafg-unsplash.jpg" alt="Room Image 1">
+              <img src="/static/images/rooms/gina-lin-m27OTMegUyA-unsplash.jpg" alt="Room Image 1">
+              <img src="/static/images/rooms/premium_photo-1661901403017-33d1c0252ac9.avif" alt="Room Image 1">
+            </div>
+        </div>
+    </div>
+
+    <!-- Include footer at the bottom -->
+    {% include 'footer.html' %}
+
+    <script>
+        // Flash message fade out
+        setTimeout(() => {
+          const flashContainer = document.getElementById('flash-container');
+          if (flashContainer) {
+            flashContainer.style.transition = 'opacity 0.2s ease';
+            flashContainer.style.opacity = '0';
+            setTimeout(() => flashContainer.remove(), 500);
+          }
+        }, 2000); // 5 seconds
+
+        // Image Slider functionality
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slider .slides img');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.style.display = 'none');
+            slides[index].style.display = 'block';
+        }
+
+        function nextSlide() {
+            currentIndex++;
+            if (currentIndex >= slides.length) {
+                currentIndex = 0;
+            }
+            showSlide(currentIndex);
+        }
+
+        // Initial slide
+        showSlide(currentIndex);
+
+        // Automatic sliding
+        setInterval(nextSlide, 3000);  // 3 seconds interval
+    </script>
+</body>
+</html>

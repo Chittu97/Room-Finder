@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Room Finder</title>
+    <link rel="stylesheet" href="/static/styles.css"> 
+
+
+
+
+   
+</head>
+<body class="welcome"> <!-- add class 'welcome' to body-->
+    <div class="welcome-container">
+        <h1>Welcome to Room Finder</h1>
+        <p>Your perfect room is just a few clicks away!</p>
+        <div class="btn-container">
+            <!-- These links will take the user to the login and signup forms -->
+            <a href="{{ url_for('login', action='login') }}" class="btn">Please Login
+                <i class="fas fa-sign-in-alt" ></i> </a>
+            
+            
+        </div>
+    </div>
+</body>
+</html>
